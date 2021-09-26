@@ -1,14 +1,21 @@
 public class InvoiceGenerator {
-    private static final double MINIMUM_COST_PER_KILOMETER = 10;
-    private static final int COST_PER_TIME = 1;
-    private static final double MINIMUM_FARE = 5;
+    private static double MINIMUM_COST_PER_KILOMETER;
+    private static double COST_PER_TIME;
+    private static double MINIMUM_FARE;
     RideRepository rideRepository;
 
     public InvoiceGenerator() {
         this.rideRepository = new RideRepository();
     }
 
-    public double calculateFare(double distance, int time) {
+    private void setValue(RideType rideType) {
+        MINIMUM_COST_PER_KILOMETER = rideType.minimumCostPerKM;
+        COST_PER_TIME = rideType.costPerTime;
+        MINIMUM_FARE = rideType.minFare;
+    }
+
+    public double calculateFare(RideType rideType, double distance, int time) {
+        setValue(rideType);
         double totalFare = distance * MINIMUM_COST_PER_KILOMETER + time * COST_PER_TIME;
         if (totalFare < MINIMUM_FARE)
             return MINIMUM_FARE;
@@ -18,14 +25,13 @@ public class InvoiceGenerator {
     public InvoiceSummary calculateAmount(Ride[] rides) {
         double totalFare = 0;
         for (Ride ride : rides) {
-            totalFare += this.calculateFare(ride.distance, ride.time);
+            totalFare += this.calculateFare(ride.rideType, ride.distance, ride.time);
         }
         return new InvoiceSummary(rides.length, totalFare);
     }
 
     public void addRides(String userId, Ride[] ride) {
         rideRepository.addRide(userId, ride);
-
     }
 
     public InvoiceSummary getInvoiceSummary(String userId) {
