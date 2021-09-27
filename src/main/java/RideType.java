@@ -3,7 +3,7 @@ public enum RideType {
     PREMIUM(15, 2, 20);
 
     private final double minimumCostPerKM;
-    private  final double costPerTime;
+    private final double costPerTime;
     private final double minFare;
 
     RideType(double minimumCostPerKM, double costPerTime, double minFare) {
