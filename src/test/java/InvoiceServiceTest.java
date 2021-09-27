@@ -51,6 +51,17 @@ public class InvoiceServiceTest {
     }
 
     @Test
+    public void givenUserIdAndMultipleRides_WantToModifyExistingUserId_Should_Return_InvoiceSummary() {
+        invoiceGenerator.addRides(userId, rides);
+        Ride[] ride1 = {new Ride(RideType.NORMAL, 2.0, 5), new Ride(RideType.NORMAL, 0.1, 1)};
+        invoiceGenerator.addRides(userId, ride1);
+        InvoiceSummary expectedInvoicesum = new InvoiceSummary(6, 285.0);
+        InvoiceSummary invoiceSummery = invoiceGenerator.getInvoiceSummary(userId);
+        Assertions.assertEquals(expectedInvoicesum, invoiceSummery);
+    }
+
+
+    @Test
     public void givenPremiumUserIdAndRides_ShouldReturnInvoiceSummary() {
         invoiceGenerator.addRides(userId, rides);
         InvoiceSummary summary = invoiceGenerator.getInvoiceSummary(userId);

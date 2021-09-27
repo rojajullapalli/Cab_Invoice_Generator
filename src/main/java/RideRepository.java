@@ -9,7 +9,11 @@ public class RideRepository {
     public void addRide(String userId, Ride[] ride) {
         ArrayList<Ride> rideArrayList = this.userRides.get(userId);
         if (rideArrayList == null)
-            this.userRides.put(userId, new ArrayList<Ride>(List.of(ride)));
+           userRides.put(userId, new ArrayList<Ride>(List.of(ride)));
+        else {
+            rideArrayList.addAll(List.of(ride));
+            userRides.put(userId, rideArrayList);
+        }
     }
 
     public Ride[] getRides(String userId) {
