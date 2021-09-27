@@ -40,13 +40,6 @@ public class InvoiceServiceTest {
     }
 
     @Test
-    void givenUserIdAndMultipleRides_ShouldReturnInvoiceSummary() {
-        invoiceGenerator.addRides(userId, rides);
-        InvoiceSummary invoiceSummary = invoiceGenerator.getInvoiceSummary(userId);
-        Assertions.assertEquals(expectedSummery, invoiceSummary);
-    }
-
-    @Test
     public void givenUserIdAndMultipleRides_GenerateTotalFare_ShouldReturnInvoiceSummeryOfGivenUserId() {
         invoiceGenerator.addRides(userId, rides);
         String user = "prav";
@@ -62,13 +55,6 @@ public class InvoiceServiceTest {
         invoiceGenerator.addRides(userId, rides);
         InvoiceSummary summary = invoiceGenerator.getInvoiceSummary(userId);
         Assertions.assertEquals(expectedSummery, summary);
-    }
-
-    @Test
-    public void givenPremiumUserId_GenerateTotalFare_ShouldReturnInvoiceSummery() {
-        invoiceGenerator.addRides(userId, rides);
-        InvoiceSummary invoiceSummery = invoiceGenerator.getInvoiceSummary(userId);
-        Assertions.assertEquals(expectedSummery, invoiceSummery);
     }
 
 }
