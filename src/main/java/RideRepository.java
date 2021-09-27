@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 public class RideRepository {
-    Map<String, ArrayList<Ride>> userRides = new HashMap<>();
+    public Map<String, ArrayList<Ride>> userRides = new HashMap<>();
 
     public void addRide(String userId, Ride[] ride) {
         ArrayList<Ride> rideArrayList = this.userRides.get(userId);
