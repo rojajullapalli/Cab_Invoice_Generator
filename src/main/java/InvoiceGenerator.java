@@ -17,7 +17,7 @@ public class InvoiceGenerator {
         rideRepository.addRide(userId, ride);
     }
 
-    public InvoiceSummary getInvoiceSummary(String userId) {
+    public InvoiceSummary getInvoiceSummary(String userId) throws ExceptionType {
         return this.calculateAmount(rideRepository.getRides(userId));
     }
 

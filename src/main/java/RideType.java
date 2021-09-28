@@ -14,8 +14,6 @@ public enum RideType {
 
     public static double calculateFare(RideType rideType, double distance, int time) {
         double totalFare = distance * rideType.minimumCostPerKM + time * rideType.costPerTime;
-        if (totalFare < rideType.minFare)
-            return rideType.minFare;
-        return totalFare;
+        return Math.max(totalFare, rideType.minFare);
     }
 }
